@@ -1,0 +1,52 @@
+name: Publier la release publique
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Numéro du run de build (ex : 41917951126)"
+        required: true
+        default: "41917951126"
+      artifact_name:
+        description: "Nom exact de l'artifact"
+        required: true
+        default: "obs-alertes-steampunk-1.0.0-windows-x64-2682b70e4"
+      tag:
+        description: "Version de la release (ex : v1.0.0)"
+        required: true
+        default: "v1.0.0"
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  DEPOT_PUBLIC: AzuryNeko/obs-alertes-steampunk-releases
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Télécharger l'artifact du build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "${{ inputs.run_id }}" \
+            --repo "${{ github.repository }}" \
+            --name "${{ inputs.artifact_name }}" \
+            --dir dl
+
+      - name: Créer le zip
+        run: |
+          cd dl
+          zip -r "../${{ inputs.artifact_name }}.zip" .
+
+      - name: Publier la release sur le dépôt public
+        env:
+          GH_TOKEN: ${{ secrets.RELEASES_PAT }}
+        run: |
+          gh release create "${{ inputs.tag }}" \
+            "${{ inputs.artifact_name }}.zip" \
+            --repo "$DEPOT_PUBLIC" \
+            --title "OBS Alertes Steampunk ${{ inputs.tag }}" \
+            --notes "Version ${{ inputs.tag }} pour Windows x64. Décompresse le zip et suis le README."
