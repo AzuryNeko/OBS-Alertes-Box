@@ -4,6 +4,15 @@
 
 ![Aperçu du plugin Alertes Box : le dock de test et des alertes steampunk dans OBS](apercu-github.gif)
 
+## Téléchargement
+
+| Système | Téléchargement |
+|---------|----------------|
+| **Windows 64 bits** | [⬇ Télécharger la dernière version](https://github.com/AzuryNeko/OBS-Alertes-Box/releases/latest) |
+| Toutes les versions | [Voir toutes les releases](https://github.com/AzuryNeko/OBS-Alertes-Box/releases) |
+
+Sur la page qui s'ouvre, clique sur le fichier `.zip` dans la section **Assets**. Aucun compte GitHub n'est nécessaire. Ensuite, suis l'[installation](#installation) ci-dessous.
+
 ## Fonctionnalités
 
 * **Un dock dans OBS** : réglage de la chaîne, installation de la source en un clic, boutons de test hors ligne, dans l'apparence native d'OBS.
@@ -26,7 +35,7 @@
 
 ## Installation
 
-Télécharge la version de ton système dans les **Releases** du dépôt (ou dans les artefacts d'une exécution réussie de l'onglet *Actions*).
+Télécharge la version de ton système dans les [**Releases**](https://github.com/AzuryNeko/OBS-Alertes-Box/releases/latest) du dépôt.
 
 * **Windows** : copie le dossier `obs-alertes-steampunk` (il contient `bin` et `data`) dans `C:\ProgramData\obs-studio\plugins\`. Le résultat attendu est `…\plugins\obs-alertes-steampunk\bin\64bit\obs-alertes-steampunk.dll`.
 * **macOS** : ouvre le paquet d'installation. Le plugin n'est pas signé : si macOS le bloque, autorise-le dans *Réglages Système, Confidentialité et sécurité*.
